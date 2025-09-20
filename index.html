@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Profile Generator</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: lightblue;
+        }
+        h1 {
+            text-align: center;
+            color: black;
+            margin: 20px;
+
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .profile-card {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        .profile-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .profile-card p {
+            margin-bottom: 5px;
+        }
+        .notes {
+            margin-top: 15px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<h1> String Showcase: My basic info </h1>
+
+    <div class="container">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" value="Lorenzo">
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input type="text" id="age" value="15">
+        </div>
+        <div>
+            <label for="school">School:</label>
+            <input type="text" id="school" value="OBMC">
+        </div>
+        <button id="generate-button" py-click="generate_profile">Generate Message</button>
+
+        <div class="profile-card">
+            <h3 class="icon-text">👤 Student Profile</h3>
+            <p>Name: <span id="display-name"></span></p>
+            <p>Age: <span id="display-age"></span></p>
+            <p>School: <span id="display-school"></span></p>
+            <div class="notes">
+                <h3 class="icon-text">📝 Notes:</h3>
+                <p id="display-notes"></p>
+            </div>
+        </div>
+    </div>
+
+    <py-script>
+        from js import document
+
+        def generate_profile(*args, **kwargs):
+            name = document.getElementById('name').value
+            age = document.getElementById('age').value
+            school = document.getElementById('school').value
+
+            document.getElementById('display-name').innerText = name
+            document.getElementById('display-age').innerText = age
+            document.getElementById('display-school').innerText = school
+
+            notes_message = f"{name} is currently {age} years old and studies at {school}."
+            notes_message += "\nThis information was gathered through input fields and displayed using a multiline string in Python via PyScript."
+            document.getElementById('display-notes').innerText = notes_message
+    </py-script>
+</body>
+</html>
